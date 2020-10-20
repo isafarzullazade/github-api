@@ -1,0 +1,31 @@
+class Storage{
+    static getSearchedUsersFromStorage(){
+        // Butun istifadecileri al
+        let users;
+
+        if(localStorage.getItem("searched") === null){
+            users = [];
+        }
+        else{
+            users = JSON.parse(localStorage.getItem("searched"));
+        }
+        return users;
+    }
+    static addSearchedUserToStorage(username){
+        // Istifadeci artir
+        let users = this.getSearchedUsersFromStorage();
+
+        // IndexOf
+
+        if(users.indexOf(username) === -1){
+            users.push(username);
+        }
+        localStorage.setItem("searched", JSON.stringify(users));
+
+
+    }
+    static clearAllSearchedUsersFromStorage(){
+        // Butun istifadecileri sil
+        localStorage.removeItem("searched");
+    }
+}
